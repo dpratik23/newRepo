@@ -1,15 +1,5 @@
+---
 applications:
-<<<<<<< HEAD
-  - name: pal-tracker
-    path: build/libs/pal-tracker.jar
-    routes:
-      - route: pal-tracker-psd8-sts95.apps.evans.pal.pivotal.io
-    services:
-      - tracker-database
-    env:
-      WELCOME_MESSAGE: Hello from the review environment
-      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ } }'
-=======
 - name: pal-tracker
   path: build/libs/pal-tracker.jar
   buildpacks:
@@ -28,4 +18,3 @@ applications:
     WELCOME_MESSAGE: Hello from the review environment
     JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.+ }, memory_calculator: { stack_threads: 250 } }'
     MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: 'info,health,palTrackerFailure'
->>>>>>> 09988f4... Add production tuning parameters to manifest, autoscaling scripts
