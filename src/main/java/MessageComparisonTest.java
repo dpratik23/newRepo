@@ -33,7 +33,8 @@ class MessageComparisonTest {
         return inputFiles.stream().map(inputPath -> {
             try {
                 String inputMessage = Files.readString(inputPath);
-                String outputMessage = Files.readString(outputDir.resolve(inputPath.getFileName()));
+                String outputFileName = "output" + inputPath.getFileName().toString().substring(5); // Assuming "input" prefix
+                String outputMessage = Files.readString(outputDir.resolve(outputFileName));
                 return new MessagePair(inputMessage, outputMessage);
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -44,6 +45,14 @@ class MessageComparisonTest {
     @ParameterizedTest
     @MethodSource("messagePairs")
     void testMessages(MessagePair messagePair) {
-        assertEquals(messagePair.inputMessage, messagePair.outputMessage, "Messages do not match");
+        String transformedMessage = transformMessage(messagePair.inputMessage);
+        assertEquals(messagePair.outputMessage, transformedMessage, "Transformed message does not match expected output");
+    }
+
+    // This method performs the transformation on the input message
+    private String transformMessage(String input) {
+        // Implement your transformation logic here
+        // Example transformation (to be replaced with actual logic)
+        return input.trim().toUpperCase();
     }
 }
